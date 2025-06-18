@@ -172,7 +172,7 @@ function pointerStart(event) {
 window.addEventListener('touchmove', pointerMove);
 window.addEventListener('mousemove', pointerMove);
 
-function pointerMove(even) {
+function pointerMove(event) {
     event.preventDefault();
     // Only run this if touch or mouse click has started
     if (moving === true) {
@@ -199,7 +199,7 @@ canvas.addEventListener('touchmove', function (event) {
     event.preventDefault();
 });
 
-canvas.addEventListener('mousehmove', function (event) {
+canvas.addEventListener('mousemove', function (event) {
     event.preventDefault();
 });
 
