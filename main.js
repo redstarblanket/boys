@@ -49,7 +49,7 @@ var layer_list = [
         'src': 'layer4.png',
         'z_index': -.5,
         'position': { x: 0, y: 0 },
-        'blend': 'normal',
+        'blend': 'source-over',
         'opacity': 1
     },
     {
@@ -57,7 +57,7 @@ var layer_list = [
         'src': 'layer5.gif',
         'z_index': 1.5,
         'position': { x: 0, y: 0 },
-        'blend': 'normal',
+        'blend': 'source-over',
         'opacity': 1,
     }
 ];
