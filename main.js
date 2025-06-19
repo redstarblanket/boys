@@ -26,7 +26,7 @@ var currentFrame = 0;
 var totalFrames = 70;
 var frameWidth = 820;
 var frameHeight = 1125;
-var frameDuration = 100;
+var frameDuration = 40;
 var lastFrameTime = Date.now();
 var spriteZ = 2; // high value to render on top
 
