@@ -103,7 +103,7 @@ function drawCanvas() {
         if (layer.blend) {
             context.globalCompositeOperation = layer.blend;
         } else {
-            context.globalCompositeOperation = 'normal';
+            context.globalCompositeOperation = 'source-over';
         }
 
         // Set the opacity of the layer
