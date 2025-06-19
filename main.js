@@ -41,7 +41,7 @@ var layer_list = [
         'src': 'layer3.png',
         'z_index': -2,
         'position': { x: 0, y: 0 },
-        'blend': 'lighten',
+        'blend': 'normal',
         'opacity': 1
     },
     {
