@@ -79,38 +79,32 @@ function hideLoading() {
 }
 
 function drawCanvas() {
-    // clear whatever is in the canvas
     context.clearRect(0, 0, canvas.width, canvas.height);
 
-    // update tween
+    // Add a solid background for visibility (optional)
+    context.fillStyle = '#ddd';
+    context.fillRect(0, 0, canvas.width, canvas.height);
+
+    // Update tween animation frame
     TWEEN.update();
 
-    // calculate how much canvas should rotate
     var rotate_x = (pointer.y * -0.15) + (motion.y * -1.2);
     var rotate_y = (pointer.x * 0.15) + (motion.x * 1.2);
+    canvas.style.transform = "rotateX(" + rotate_x + "deg) rotateY(" + rotate_y + "deg)";
 
-    var transform_string = "rotateX(" + rotate_x + "deg) rotateY(" + rotate_y + "deg)";
-
-    // actually rotate canvas
-    canvas.style.transform = transform_string;
-
-    // loop through each layer and draw to canvas
-    layer_list.forEach(function (layer, index) {
-
+    layer_list.forEach(layer => {
         layer.position = getOffset(layer);
 
-        // If the layer has a blend mode set, use that blend mode, otherwise use normal
-        if (layer.blend) {
-            context.globalCompositeOperation = layer.blend;
-        } else {
-            context.globalCompositeOperation = 'source-over';
-        }
+        // 🛠 Use valid blend or fallback
+        context.globalCompositeOperation = layer.blend || 'source-over';
 
-        // Set the opacity of the layer
+        // Set opacity
         context.globalAlpha = layer.opacity;
 
+        // 🖼 Draw image to canvas
         context.drawImage(layer.image, layer.position.x, layer.position.y);
     });
+
     requestAnimationFrame(drawCanvas);
 }
 
