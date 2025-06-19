@@ -16,7 +16,6 @@ var background = new Image();
 var creatures = new Image();
 var castle = new Image();
 var boys = new Image();
-var frame = new Image();
 
 // create a list of layered objects
 var layer_list = [
@@ -51,16 +50,19 @@ var layer_list = [
         'position': { x: 0, y: 0 },
         'blend': 'source-over',
         'opacity': 1
-    },
-    {
-        'image': frame,
-        'src': 'layer5.gif',
-        'z_index': 1.5,
-        'position': { x: 0, y: 0 },
-        'blend': 'source-over',
-        'opacity': 1,
     }
 ];
+
+var sprite = new Image();
+sprite.src = "layer5-sprite.png";
+
+var currentFrame = 0;
+var totalFrames = 70;
+var frameWidth = 820;
+var frameHeight = 1125;
+var frameDuration = 100; // ms
+var lastFrameTime = Date.now();
+
 
 layer_list.forEach(function (layer, index) {
     layer.image.onload = function () {
@@ -107,6 +109,24 @@ function drawCanvas() {
 
     requestAnimationFrame(drawCanvas);
 }
+
+// Update and draw sprite sheet
+var now = Date.now();
+if (now - lastFrameTime > frameDuration) {
+    currentFrame = (currentFrame + 1) % totalFrames;
+    lastFrameTime = now;
+}
+
+context.globalAlpha = 1;
+context.globalCompositeOperation = "source-over";
+context.drawImage(
+    sprite,
+    currentFrame * frameWidth, 0,
+    frameWidth, frameHeight,
+    0, 0,
+    frameWidth, frameHeight
+);
+
 
 // function to calculate layer offset
 function getOffset(layer) {
